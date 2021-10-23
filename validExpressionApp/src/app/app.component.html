@@ -22,8 +22,14 @@
     <div>
       <p>History last 5 calculations:</p>
       <div>
-        <li *ngFor="let item of historyList | slice:historyList.length - 5; let i=index" class="list-history" >{{item.expr}}::{{item.res}}</li>
+        <li *ngFor="let item of historyList | slice:historyList.length - 5; let i=index" class="list-history" >
+          <span class="expression-cont">{{item.expr}}</span>
+          <span class="result-cont">{{item.res}}</span>
+        </li>
       </div>
+    </div>
+    <div class="full-width">
+      <button (click)="getRandomNumberFromURL()">Generate Number</button> <span>{{randomNumber}}</span>
     </div>
   </div>
 </div>

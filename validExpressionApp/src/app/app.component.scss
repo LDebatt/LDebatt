@@ -42,5 +42,30 @@
     .incorrect {
       background-color: red;
     }
+    li {
+      width: 100%;
+      display: flex;
+      .expression-cont {
+        width: 49%;
+        display: flex;
+        justify-content: flex-start;
+      }
+      .result-cont {
+        border-left: 1px solid black;
+        width: 49%;
+        display: flex;
+        justify-content: flex-end;
+      }
+    }
+    .full-width {
+      width: 100%;
+      display: flex;
+      justify-content: space-around;
+
+      span {
+        display: flex;
+        justify-content: flex-end;
+      }
+    }
   }
 

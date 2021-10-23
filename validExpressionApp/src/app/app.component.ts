@@ -1,19 +1,26 @@
-import { Component } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
+import { Component, Injectable } from '@angular/core';
 import math from 'mathjs-expression-parser';
-import _clone from 'lodash/clone'
-import _escapeRegExp from 'lodash/escapeRegExp'
+import _clone from 'lodash/clone';
+import _escapeRegExp from 'lodash/escapeRegExp';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss']
 })
+@Injectable({
+  providedIn:  'root'
+})
+
 export class AppComponent {
+  url = 'https://www.random.org/integers/?num=1&min=1&max=100&col=1&base=10&format=plain&rnd=new';
   title = 'Valid Math Expressions';
   state: { expression: string; result: string; validity: string; };
   historyList = [];
+  randomNumber: any;
 
-  constructor() {
+  constructor(private http: HttpClient) {
     this.state = {expression: '', result: '', validity: ''};
   }
 
@@ -43,6 +50,12 @@ export class AppComponent {
       }
     }
     return result;
+  }
+
+  getRandomNumberFromURL = () => {
+    this.http.get(this.url).subscribe(data => {
+      this.randomNumber = data;
+    });
   }
 
   setState = (key: string, value: any) => {
