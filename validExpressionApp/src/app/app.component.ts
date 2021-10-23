@@ -11,6 +11,7 @@ import _escapeRegExp from 'lodash/escapeRegExp'
 export class AppComponent {
   title = 'Valid Math Expressions';
   state: { expression: string; result: string; validity: string; };
+  historyList = [];
 
   constructor() {
     this.state = {expression: '', result: '', validity: ''};
@@ -74,8 +75,10 @@ export class AppComponent {
   }
 
   checkExpression = () => {
-    const subExpression = this.subFields(this.state.expression);
-    this.setState('result', this.getResult(subExpression));
+    const expression = this.subFields(this.state.expression);
+    const theResultOutcome = this.getResult(expression);
+    this.setState('result', theResultOutcome);
+    this.historyList.push({expr: expression, res: theResultOutcome});
   }
 
   handleChange = (e) => {

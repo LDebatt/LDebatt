@@ -11,7 +11,7 @@
   <div>
     <div>
       <p>Input a math expression:</p>
-      <input class="input-container" type="text" (value)="state.formula" (change)="handleChange($event)"/>
+      <input class="input-container" type="text" (value)="state.expression" (change)="handleChange($event)"/>
     </div>
     <p>Result: {{state.result}}</p>
     <span [ngClass]="{'correct': (getValidityColor() === 1),
@@ -19,6 +19,12 @@
       'none': (getValidityColor()=== -1)}">
       {{state.validity}}
     </span>
+    <div>
+      <p>History last 5 calculations:</p>
+      <div>
+        <li *ngFor="let item of historyList | slice:historyList.length - 5; let i=index" class="list-history" >{{item.expr}}::{{item.res}}</li>
+      </div>
+    </div>
   </div>
 </div>
 
